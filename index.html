@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday My Love</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#ff9ecf,#ffd6ec);
+min-height:100vh;
+display:flex;
+flex-direction:column;
+align-items:center;
+overflow-x:hidden;
+}
+
+/* tiêu đề */
+
+h1{
+margin-top:20px;
+color:#ff2f8f;
+}
+
+/* phong bì */
+
+.envelope{
+width:320px;
+height:200px;
+background:#ff6fb5;
+margin-top:40px;
+border-radius:10px;
+position:relative;
+cursor:pointer;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+.flap{
+position:absolute;
+top:-100px;
+border-left:160px solid transparent;
+border-right:160px solid transparent;
+border-bottom:100px solid #ff4fa3;
+transform-origin:bottom;
+transition:1s;
+}
+
+.open .flap{
+transform:rotateX(180deg);
+}
+
+/* thư */
+
+.letter{
+position:absolute;
+width:90%;
+left:5%;
+bottom:0;
+background:white;
+padding:20px;
+border-radius:10px;
+text-align:center;
+color:#ff2f8f;
+
+transform:translateY(120%);
+opacity:0;
+
+transition:1s;
+}
+
+.open .letter{
+transform:translateY(-60%);
+opacity:1;
+}
+
+/* polaroid */
+
+.polaroid{
+position:absolute;
+width:120px;
+background:white;
+padding:6px;
+border-radius:6px;
+box-shadow:0 8px 20px rgba(0,0,0,0.3);
+
+opacity:0;
+transform:scale(.5) rotate(-20deg);
+transition:1s;
+
+z-index:4;
+}
+
+.polaroid img{
+width:100%;
+border-radius:4px;
+}
+
+.show{
+opacity:1;
+transform:scale(1) rotate(0);
+}
+
+/* tim rơi */
+
+.heart{
+position:fixed;
+top:-10px;
+font-size:18px;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh);
+}
+}
+
+/* pháo hoa */
+
+.fire{
+position:fixed;
+font-size:22px;
+animation:boom 1s forwards;
+}
+
+@keyframes boom{
+0%{transform:scale(0)}
+100%{transform:scale(2);opacity:0}
+}
+
+/* bánh */
+
+.cake{
+font-size:60px;
+margin-top:40px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>💗 Happy Birthday 💗</h1>
+
+<div class="envelope" id="envelope">
+
+<div class="flap"></div>
+
+<div class="letter" id="letter">
+
+Chúc Dịt sinh nhật thật vui 🎂 <br><br>
+
+Luôn xinh đẹp và hạnh phúc 💗 <br><br>
+
+Cảm ơn em đã đến bên anh 💌
+
+</div>
+
+</div>
+
+<!-- polaroid -->
+
+<div class="polaroid" id="p3" style="top:280px;left:40px">
+<img src="dit.jpg">
+</div>
+
+<div class="polaroid" id="p4" style="top:280px;right:40px">
+<img src="dit1.jpg">
+</div>
+
+<div class="cake">🎂</div>
+
+<audio id="music" loop>
+<source src="For Ya.mp3">
+</audio>
+
+<script>
+
+/* tim rơi */
+
+for(let i=0;i<25;i++){
+
+let heart=document.createElement("div")
+
+heart.className="heart"
+heart.innerHTML="💗"
+
+heart.style.left=Math.random()*100+"vw"
+
+heart.style.animationDuration=(3+Math.random()*3)+"s"
+
+document.body.appendChild(heart)
+
+}
+
+/* mở thư */
+
+let envelope=document.getElementById("envelope")
+
+envelope.onclick=()=>{
+
+envelope.classList.add("open")
+
+document.getElementById("music").play()
+
+showPhotos()
+
+heartBoom()
+
+firework()
+
+}
+
+/* polaroid */
+
+function showPhotos(){
+setTimeout(()=>p3.classList.add("show"),1700)
+setTimeout(()=>p4.classList.add("show"),2100)
+
+}
+
+/* tim nổ */
+
+function heartBoom(){
+
+for(let i=0;i<12;i++){
+
+let h=document.createElement("div")
+
+h.className="fire"
+
+h.innerHTML="💗"
+
+h.style.left="50vw"
+h.style.top="40vh"
+
+document.body.appendChild(h)
+
+}
+
+}
+
+/* pháo hoa */
+
+function firework(){
+
+for(let i=0;i<20;i++){
+
+let f=document.createElement("div")
+
+f.className="fire"
+
+f.innerHTML="✨"
+
+f.style.left=Math.random()*100+"vw"
+f.style.top=Math.random()*60+"vh"
+
+document.body.appendChild(f)
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
